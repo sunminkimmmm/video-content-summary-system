@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+
+</head>
+<body>
+<p style="color:white;background-color:#E6E6FA;margin:0px;font-size:20pt">동영상 콘텐츠를 위한 요약 노트 시스템</p>
+
+<br>
+    <form action="/list" method="get">
+        <input type="submit" value="목록보기" style="width:100px;"/>
+        </form>
+
+
+<div>
+<ul style="list-style-type:none">
+
+  {% for idx in realList %}
+    {% set i = loop.index+num4 %}
+    {% set j = i | string %}
+    <li>{{ loop.index}}</li>
+    <li>텍스트  {{ idx[1] }}</li>
+    <li>재생시간 {{ idx[3]}}</li>
+    <li><img src="{{ url_for('static', filename='pic'+idx[0]+'.png') }}" style="width:500px;height:200px"></li>
+    <form action="/update" method="post">
+        <li>텍스트 수정 <input type="text" value="{{idx[1]}}" name="t1" style="width:500px"></li>
+        <li><input type="hidden" value="{{idx[2]}}" name="t2" width="500px"></li>
+        <li><input type="hidden" value="{{loop.index}}" name="t3" width="500px"></li>
+        <input type="submit" value="수정" style="width:100px;"/>
+    </form>
+    <form action="/test" method="post" style="display:inline">
+        <input type="hidden" name="dnum2" value="{{idx[2]}}"/>
+        <input type="hidden" name="dnum" value="{{loop.index}}"/>
+        <input type="submit" value="삭제" style="width:100px;"/>
+        </form>
+
+    <br><br>
+
+  {% endfor %}
+</ul>
+</div>
+<form action="/register" method="post">
+        <span>제목 <input type="text" name="title" style="width:200px;height:15px;"></span>
+        <input type="submit" value="등록하기" style="width:100px;"/>
+        </form>
+
+</body>
+</html>

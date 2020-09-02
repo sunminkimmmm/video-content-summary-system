@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p style="color:white;background-color:#E6E6FA;margin:0px;font-size:20pt">동영상 콘텐츠를 위한 요약 노트 시스템</p>
+<br>
+<div>
+
+  {% for idx in datas %}
+    {% set i = idx[1] | string %}
+    <span><img src="{{ url_for('static', filename='pic'+i+'.png') }}" width="200px"></span>
+
+  {% endfor %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<p style="color:white;background-color:#E6E6FA;margin:0px;font-size:20pt">동영상 콘텐츠를 위한 요약 노트 시스템</p>
+<br>
+    <form action="/list" method="get">
+        <input type="submit" value="목록보기" style="width:100px;" />
+        </form>
+<div>
+    <p>{{ datas[0][3]}}</p>
+<ul style="list-style-type:none">
+
+  {% for idx in datas %}
+    {% set i = idx[1] | string %}
+    <li>{{ loop.index}}</li>
+    <li>{{ idx[2] }}</li>
+    <li>재생시간{{ idx[6] }}</li>
+    <li><img src="{{ url_for('static', filename='pic'+i+'.png') }}" style="width:500px;height:200px"></li>
+    <br>
+ <form action="/detailUpdate" method="post">
+     <input type="hidden" value="{{idx[0]}}" name="t0" width="500px">
+     <input type="text" value="{{idx[2]}}" name="t1" style="width:500px">
+      <br>
+     <input type="submit" value="수정하기" style="width:100px;" />
+          </form>
+     <form action="/detailDelete" method="post">
+     <input type="hidden" value="{{idx[0]}}" name="t3" width="500px">
+
+     <input type="submit" value="삭제하기" style="width:100px;"/>
+          </form>
+    <br><br>
+
+  {% endfor %}
+</ul>
+</div>
+
+</body>
+</html>

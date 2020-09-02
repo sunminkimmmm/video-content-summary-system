@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<p style="color:white;background-color:#E6E6FA;margin:0px;font-size:20pt">동영상 콘텐츠를 위한 요약 노트 시스템</p>
+<div>
+<ul style="list-style-type:none">
+
+  {% for idx in ds %}
+
+     <li>
+      <form action="/detail" method="post">
+          <p>제목 :  {{idx[3]}}</p>
+           <input type="hidden" name="p" value="{{idx[4]}}">
+          <input type="submit" value="상세보기" style="width:100px;"/>
+          </form>
+      </li>
+    <li>
+      <form action="/sumnail" method="post">
+           <input type="hidden" name="nail" value="{{idx[4]}}">
+          <input type="submit" value="섬네일보기" style="width:100px;"/>
+          </form>
+      </li>
+
+  {% endfor %}
+</ul>
+</div>
+
+</body>
+</html>
